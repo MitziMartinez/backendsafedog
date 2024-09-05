@@ -22,6 +22,11 @@ public class ContactoDeEmergenciaService {
 		return contactoDeEmergenciaRepository.findAll();
 	}
 	
+	//Método Post By Id 	
+			public Long getLastId() {
+				   return contactoDeEmergenciaRepository.findLastId();
+			}
+				
 	public ContactoDeEmergencia createContactoDeEmergencia(ContactoDeEmergencia newContactoDeEmergencia) {
 		return contactoDeEmergenciaRepository.save(newContactoDeEmergencia);
 		}

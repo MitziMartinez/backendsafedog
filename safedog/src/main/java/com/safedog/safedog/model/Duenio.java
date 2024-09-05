@@ -33,10 +33,10 @@ public class Duenio {
     @Column(name = "correo", length = 100, nullable = false , unique = true)
     private String correo;
 
-    @Column(name = "contraseña", length = 50, nullable = false , unique = false)
+    @Column(name = "contraseña", length = 50, nullable = false, unique = false)
     private String contrasenia;
 
-    @Column(name = "direccion", length = 255, nullable = false, unique = false)
+    @Column(name = "direccion", length = 255, nullable =false, unique = false)
     private String direccion;
 
     @Column(name = "url_foto", length = 255, nullable = false, unique = true)
@@ -44,11 +44,11 @@ public class Duenio {
 	
 	//Definir las relaciones (1:1) One to One Un Duenio puede tener una sola mascota
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name="Perritos_id_perrito", nullable= false)
+	@JoinColumn(name="Perritos_id_perrito", nullable= true)
 	private Perrito perrito;
 	
 	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
-	@JoinColumn(name="Contactos_Emergencia_id_contacto_emergencia", nullable= false)
+	@JoinColumn(name="Contactos_Emergencia_id_contacto_emergencia", nullable= true)
 	private ContactoDeEmergencia contactoDeEmergencia;
 	
 	

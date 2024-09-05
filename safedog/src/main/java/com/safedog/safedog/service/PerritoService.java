@@ -30,6 +30,11 @@ public class PerritoService {
 			return perritoRepository.save(newPerrito);
 			}
 		
+		//Método Post By Id 	
+				public Long getLastId() {
+					   return perritoRepository.findLastId();
+				}
+		
 	//Método para recuperar un perrito por Id (validar si existe)
 		public Perrito getById(Long idPerrito) {
 			return perritoRepository.findById(idPerrito)

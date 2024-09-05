@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.safedog.safedog.exception.ContactoDeEmergenciaException;
 import com.safedog.safedog.exception.IdDuenioNotFoundException;
 import com.safedog.safedog.exception.PerritoNotFoundException;
@@ -57,11 +56,17 @@ public class DuenioService {
 			     return dueniosRepository.findByEmail(correo);
 			}
 			
+		//Método Post By Id 	
+		public Long getLastId() {
+			   return dueniosRepository.findLastId();
+		}
+			
 		//Método Post
 			public Duenio createDuenio(Duenio duenio) {
 				return dueniosRepository.save(duenio);
 				}
 			
+		
 			public Perrito getPerrito(Long id) {
 				return perritoRepository.findById(id).orElseThrow(() -> new PerritoNotFoundException(id));
 			}
