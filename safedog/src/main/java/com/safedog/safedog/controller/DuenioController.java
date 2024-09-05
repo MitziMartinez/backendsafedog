@@ -38,6 +38,14 @@ private DuenioService duenioService;
 		return duenioService.getAll();
 	}
 		
+
+	//Mapear método get by Id que apunte a un Id específico.
+	@GetMapping("/listado/{idDuenio}")
+	public Duenio getById(@PathVariable(name = "idDuenio") Long idDuenio) {
+		return duenioService.getById(idDuenio);
+		
+	}
+	
 	
 	@GetMapping("/duenio/correo")
 		public ResponseEntity<Duenio> getByEmail(@RequestParam(name="correo")String correo){
@@ -66,15 +74,28 @@ private DuenioService duenioService;
 		 newDuenio.setUrlFoto(duenioDTO.getUrlFoto());
 		 newDuenio.setPerrito(perrito);
 		 newDuenio.setContactoDeEmergencia(contactoE);
-		 
 		 return duenioService.createDuenio(newDuenio);
 		}
 	
 	//Mapear método update Duenio utilizando Put. Necesitamos acceder al duenio mediante idDuenio(findById) y definir el nuevo valor
-		@PutMapping("/duenio/{idDuenio}")
-		public Duenio updateDuenio(@RequestBody Duenio duenio, @PathVariable(name="idDuenio") Long idDuenio) {
-			return duenioService.updateDuenio(duenio, idDuenio);
-		}
+	 @PutMapping("/duenio/{idDuenio}")
+	 public Duenio updateDuenio(@RequestBody DuenioDTO duenioDTO, @PathVariable(name="idDuenio") int idDuenio) {
+	     /*Perrito perrito = duenioService.getPerrito(duenioDTO.getPerrito());
+	     ContactoDeEmergencia contactoE = duenioService.getContactoDeEmergencia(duenioDTO.getContactoDeEmergencia());*/
+	     Duenio updatedDuenio = new Duenio();
+	     updatedDuenio.setIdDuenio( idDuenio);
+	     updatedDuenio.setNombre(duenioDTO.getNombre());
+	     updatedDuenio.setApellido(duenioDTO.getApellido());
+	     updatedDuenio.setTelefono(duenioDTO.getTelefono());
+	     updatedDuenio.setCorreo(duenioDTO.getCorreo());
+	     updatedDuenio.setContrasenia(duenioDTO.getContrasenia());
+	     updatedDuenio.setDireccion(duenioDTO.getDireccion());
+	     updatedDuenio.setUrlFoto(duenioDTO.getUrlFoto());
+	     /*updatedDuenio.setPerrito(perrito);
+	     updatedDuenio.setContactoDeEmergencia(contactoE);*/
+
+	     return duenioService.updateDuenio(updatedDuenio, idDuenio);
+	 }
 	 
 	//Mapear método Delete que apunte a un Id específico. Pra ello, debemos permitir que el Id sea variable
 		//en endpoint (@PathVariable)

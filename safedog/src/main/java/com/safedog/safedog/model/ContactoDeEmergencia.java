@@ -21,7 +21,7 @@ public class ContactoDeEmergencia {
 	private String nombre;
 	@Column(name = "telefono", length = 12, nullable = false, unique = true)
 	private String telefono;
-	@Column(name = "apellido", length = 100, nullable = false, unique = true)
+	@Column(name = "apellido", length = 100, nullable = true, unique = true)
 	private String apellido;
 	@Column(name = "correo", length = 100, nullable = true, unique = true)
 	private String correo;

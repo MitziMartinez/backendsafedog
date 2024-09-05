@@ -46,7 +46,12 @@ public class DuenioService {
 				return dueniosRepository.save(newDuenio);
 			}
 			
-		
+		//Método para recuperar un duenio por Id (validar si existe)
+			public Duenio getById(Long idDuenio) {
+				return dueniosRepository.findById(idDuenio)
+						.orElseThrow(()-> new IdDuenioNotFoundException(idDuenio));				
+			}
+			
 		//Método Get By email
 			public Duenio getByEmail(String correo){
 			     return dueniosRepository.findByEmail(correo);
@@ -66,23 +71,24 @@ public class DuenioService {
 			}
 			
 			
-		//Método para actualizar información de duenio, permitiendo modificar todos lo campos (nombre, tamanio, raza, anio, mes, genero, urlFoto)
-			public Duenio updateDuenio(Duenio duenio, Long idDuenio) {
-				return dueniosRepository.findById(idDuenio)
-						.map(duenioMap ->{
-							duenioMap.setNombre(duenio.getNombre());
-							duenioMap.setApellido(duenio.getApellido());
-							duenioMap.setTelefono(duenio.getTelefono());
-							duenioMap.setCorreo(duenio.getCorreo());
-							duenioMap.setContrasenia(duenio.getContrasenia());
-							duenioMap.setDireccion(duenio.getDireccion());
-							duenioMap.setUrlFoto(duenio.getUrlFoto());
-							duenioMap.setPerrito(duenio.getPerrito());
-							duenioMap.setContactoDeEmergencia(duenio.getContactoDeEmergencia());
-							return dueniosRepository.save(duenioMap);			
-						})
-						.orElseThrow(()-> new PerritoNotFoundException(idDuenio));
+		//Método para actualizar información de duenio, permitiendo modificar todos lo campos (nombre, apellido, telefono, correo, contrasenia, direccion, urlFoto)
+			public Duenio updateDuenio(Duenio duenio, int idDuenio) {
+			    return dueniosRepository.findById((long) idDuenio)
+			            .map(existingDuenio -> {
+			                existingDuenio.setNombre(duenio.getNombre());
+			                existingDuenio.setApellido(duenio.getApellido());
+			                existingDuenio.setTelefono(duenio.getTelefono());
+			                existingDuenio.setCorreo(duenio.getCorreo());
+			                existingDuenio.setContrasenia(duenio.getContrasenia());
+			                existingDuenio.setDireccion(duenio.getDireccion());
+			                existingDuenio.setUrlFoto(duenio.getUrlFoto());
+			                /*existingDuenio.setPerrito(duenio.getPerrito());
+			                existingDuenio.setContactoDeEmergencia(duenio.getContactoDeEmergencia());*/
+			                return dueniosRepository.save(existingDuenio);
+			            })
+			            .orElseThrow(() -> new IdDuenioNotFoundException((long) idDuenio));
 			}
+			
 			
 		//Método Delete
 		//Método para eliminar un duenio mediante un id 

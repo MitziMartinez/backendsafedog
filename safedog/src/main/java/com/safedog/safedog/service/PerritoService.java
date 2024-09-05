@@ -25,9 +25,16 @@ public class PerritoService {
 			return perritoRepository.findAll();
 		}
 		
+	//Métofo para crear a un perrito
 		public Perrito createPerrito(Perrito newPerrito) {
 			return perritoRepository.save(newPerrito);
 			}
+		
+	//Método para recuperar un perrito por Id (validar si existe)
+		public Perrito getById(Long idPerrito) {
+			return perritoRepository.findById(idPerrito)
+					.orElseThrow(()-> new PerritoNotFoundException(idPerrito));				
+		}
 
 		
 		//Método para actualizar información de perrito, permitiendo modificar todos lo campos (nombre, tamanio, raza, anio, mes, genero, urlFoto)
@@ -40,7 +47,6 @@ public class PerritoService {
 						perritoMap.setAnio(perrito.getAnio());
 						perritoMap.setMes(perrito.getMes());
 						perritoMap.setGenero(perrito.getGenero());
-						perritoMap.setUrlFoto(perrito.getUrlFoto());
 						return perritoRepository.save(perritoMap);			
 					})
 					.orElseThrow(()-> new PerritoNotFoundException(idPerrito));
