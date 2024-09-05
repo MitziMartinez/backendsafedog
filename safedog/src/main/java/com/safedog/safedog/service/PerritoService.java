@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.safedog.safedog.exception.PerritoNotFoundException;
-import com.safedog.safedog.model.ContactoDeEmergencia;
 import com.safedog.safedog.model.Perrito;
 import com.safedog.safedog.repository.PerritoRepository;
 

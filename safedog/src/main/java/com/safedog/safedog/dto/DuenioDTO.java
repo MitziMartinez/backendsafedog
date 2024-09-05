@@ -1,6 +1,6 @@
 package com.safedog.safedog.dto;
 
-import jakarta.persistence.Column;
+
 
 public class DuenioDTO {
 

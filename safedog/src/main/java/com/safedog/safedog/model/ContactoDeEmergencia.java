@@ -23,7 +23,7 @@ public class ContactoDeEmergencia {
 	private String telefono;
 	@Column(name = "apellido", length = 100, nullable = false, unique = true)
 	private String apellido;
-	@Column(name = "correo", length = 100, nullable = false, unique = true)
+	@Column(name = "correo", length = 100, nullable = true, unique = true)
 	private String correo;
 	
 	public ContactoDeEmergencia() {

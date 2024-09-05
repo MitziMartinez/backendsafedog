@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,6 +70,11 @@ private DuenioService duenioService;
 		 return duenioService.createDuenio(newDuenio);
 		}
 	
+	//Mapear método update Duenio utilizando Put. Necesitamos acceder al duenio mediante idDuenio(findById) y definir el nuevo valor
+		@PutMapping("/duenio/{idDuenio}")
+		public Duenio updateDuenio(@RequestBody Duenio duenio, @PathVariable(name="idDuenio") Long idDuenio) {
+			return duenioService.updateDuenio(duenio, idDuenio);
+		}
 	 
 	//Mapear método Delete que apunte a un Id específico. Pra ello, debemos permitir que el Id sea variable
 		//en endpoint (@PathVariable)

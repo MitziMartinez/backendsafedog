@@ -1,6 +1,6 @@
 package com.safedog.safedog.model;
 
-import java.util.List;
+
 import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
@@ -43,11 +43,11 @@ public class Duenio {
     private String urlFoto;
 	
 	//Definir las relaciones (1:1) One to One Un Duenio puede tener una sola mascota
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name="Perritos_id_perrito", nullable= false)
 	private Perrito perrito;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="Contactos_Emergencia_id_contacto_emergencia", nullable= false)
 	private ContactoDeEmergencia contactoDeEmergencia;
 	

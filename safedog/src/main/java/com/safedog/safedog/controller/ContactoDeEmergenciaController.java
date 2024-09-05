@@ -13,7 +13,7 @@ import com.safedog.safedog.model.ContactoDeEmergencia;
 import com.safedog.safedog.service.ContactoDeEmergenciaService;
 
 @RestController
-@RequestMapping("/api/safedog")
+@RequestMapping("/api/safedog/Contacto_Emergencia")
 public class ContactoDeEmergenciaController {
 	
 	private ContactoDeEmergenciaService contactoDeEmergenciaService;
@@ -23,7 +23,7 @@ public class ContactoDeEmergenciaController {
 		this.contactoDeEmergenciaService = contactoDeEmergenciaService;
 	}
 	
-	@GetMapping("/contactoE")
+	@GetMapping("/listado")
 	public List< ContactoDeEmergencia> getMappingAll(){
 		return contactoDeEmergenciaService.getMappingAll();
 	}

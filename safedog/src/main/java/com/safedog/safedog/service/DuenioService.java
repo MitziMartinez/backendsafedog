@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.safedog.safedog.dto.DuenioDTO;
 import com.safedog.safedog.exception.ContactoDeEmergenciaException;
-import com.safedog.safedog.exception.DuenioNotFoundException;
 import com.safedog.safedog.exception.IdDuenioNotFoundException;
 import com.safedog.safedog.exception.PerritoNotFoundException;
 import com.safedog.safedog.model.ContactoDeEmergencia;
@@ -68,8 +66,26 @@ public class DuenioService {
 			}
 			
 			
-			//Método Delete
-			//Método para eliminar un duenio mediante un id 
+		//Método para actualizar información de duenio, permitiendo modificar todos lo campos (nombre, tamanio, raza, anio, mes, genero, urlFoto)
+			public Duenio updateDuenio(Duenio duenio, Long idDuenio) {
+				return dueniosRepository.findById(idDuenio)
+						.map(duenioMap ->{
+							duenioMap.setNombre(duenio.getNombre());
+							duenioMap.setApellido(duenio.getApellido());
+							duenioMap.setTelefono(duenio.getTelefono());
+							duenioMap.setCorreo(duenio.getCorreo());
+							duenioMap.setContrasenia(duenio.getContrasenia());
+							duenioMap.setDireccion(duenio.getDireccion());
+							duenioMap.setUrlFoto(duenio.getUrlFoto());
+							duenioMap.setPerrito(duenio.getPerrito());
+							duenioMap.setContactoDeEmergencia(duenio.getContactoDeEmergencia());
+							return dueniosRepository.save(duenioMap);			
+						})
+						.orElseThrow(()-> new PerritoNotFoundException(idDuenio));
+			}
+			
+		//Método Delete
+		//Método para eliminar un duenio mediante un id 
 			public void deleteDuenio(Long id) {
 				if(dueniosRepository.existsById(id)) {
 					dueniosRepository.deleteById(id);

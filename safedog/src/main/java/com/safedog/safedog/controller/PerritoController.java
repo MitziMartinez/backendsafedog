@@ -3,7 +3,6 @@ package com.safedog.safedog.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safedog.safedog.model.Perrito;
 import com.safedog.safedog.service.PerritoService;
 
-import jakarta.persistence.Column;
+
 
 @RestController
-@RequestMapping("/api/safedog")
+@RequestMapping("/api/safedog/perritos")
 public class PerritoController {
 	
 	private PerritoService perritoService;
@@ -28,13 +27,13 @@ public class PerritoController {
 		this.perritoService= perritoService;
 	}
 	
-	@GetMapping("/perritos")
+	@GetMapping("/listado")
 	public List<Perrito> getMappingAll() {
 		return perritoService.getAll();
 	}
 	
 	//Mapear método post que reciba un nuevo objeto y que reciba el body del mismo.
-	@PostMapping("/perrito")
+	@PostMapping
 	public Perrito newPerrito(@RequestBody Perrito  perrito) {
 		return perritoService.createPerrito(perrito);
 	}
