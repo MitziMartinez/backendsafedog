@@ -24,7 +24,7 @@ import com.safedog.safedog.service.PerritoService;
 
 @RestController
 @RequestMapping("/api/safedog/perritos")
-@CrossOrigin(origins="*", methods = {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins="*", methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class PerritoController {
 	
 	private PerritoService perritoService;

@@ -26,7 +26,7 @@ import com.safedog.safedog.service.DuenioService;
 
 @RestController
 @RequestMapping("/api/safedog/duenios")
-@CrossOrigin(origins="*", methods = {RequestMethod.POST})
+@CrossOrigin(origins="*", methods = {RequestMethod.POST, RequestMethod.GET,RequestMethod.PUT} )
 public class DuenioController {
 
 private DuenioService duenioService;
